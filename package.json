@@ -23,6 +23,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-vue": "^9.17.0",
     "prettier": "3.0.2",
+    "sass": "^1.66.1",
     "vite": "^4.2.0",
     "vite-plugin-vuetify": "^1.0.0"
   }
