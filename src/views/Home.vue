@@ -5,7 +5,6 @@
     variant="outlined"
     dense
     filled
-    rounded
     clearable
     placeholder="Search"
     prepend-inner-icon="mdi-magnify"
@@ -13,6 +12,8 @@
     :class="{ closed: searchBoxClosed && !searchText }"
     @focus="searchBoxClosed = false"
     @blur="searchBoxClosed = true"
+    @input="text_change($event)"
+    @click:clear="searchText = ''"
   />
 
   <CountryList />
@@ -20,14 +21,22 @@
 
 <script setup>
 import CountryList from "@/components/CountryList.vue";
+import { ref } from "vue";
+let searchBoxClosed = ref(true);
+let searchText = ref("");
+function text_change(event) {
+  console.log("event: ", event);
+  console.log("event.target.value: ", event.target.value);
+  console.log("searchText: ", searchText.value);
+}
 </script>
 
 <style lang="scss">
 .v-input.expanding-search {
   transition: max-width 0.5s;
-  max-width: 300px;
+  max-width: 500px;
 }
 .v-input.closed {
-  max-width: 70px;
+  max-width: 130px;
 }
 </style>
