@@ -1,13 +1,11 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import data from "../assets/data.json";
 import CountryCard from "./CountryCard.vue";
 
 defineProps({
   msg: String,
 });
-
-const count = ref(0);
 
 onMounted(() => {
   console.log("data: ", data[0]);
@@ -26,13 +24,15 @@ onMounted(() => {
 
 <style scoped>
 .country-list {
-  padding: 10px;
+  padding: 100px;
+  /* margin: 100px; */
   background-color: #f0f0f0;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(265px, 265px));
+
   grid-gap: 3.75rem;
   justify-content: center;
 }
@@ -40,9 +40,5 @@ onMounted(() => {
   background-color: #f0f0f0;
   padding: 10px;
   text-align: center;
-}
-
-.read-the-docs {
-  color: #888;
 }
 </style>
