@@ -14,17 +14,20 @@
       </div>
     </div>
   </div> -->
-  <v-card width="300" height="300">
-    <img class="flag-img" :src="parentMsg.flag" />
-    <v-card-text class="px-4 py-0 grey--text">
-      <div class="font-weight-bold">
-        {{ parentMsg.name }}
-      </div>
-      <div>
-        {{ parentMsg.name }}
-      </div>
-    </v-card-text>
-  </v-card>
+
+  <div class="country-card" @click="showCountry">
+    <v-card width="300" height="300">
+      <img class="flag-img country-card" :src="parentMsg.flag" />
+      <v-card-text class="px-4 py-0 grey--text">
+        <div class="font-weight-bold">
+          {{ parentMsg.name }}
+        </div>
+        <div>
+          {{ parentMsg.name }}
+        </div>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -36,6 +39,12 @@ export default {
   props: {
     parentMsg: Object,
   },
+  methods: {
+    // 多加一個參數去接受事件物件
+    showCountry: function () {
+      console.log("showCountry", this.parentMsg.name);
+    },
+  },
 
   // setup(props) {
   //   console.log('parentMsg: ', props.parentMsg)
@@ -44,13 +53,17 @@ export default {
   //   }
   // }
 };
+
+// function showCountry() {
+//   console.log("showCountry");
+// }
 </script>
 
 <style>
 .country-card {
   display: flex;
   flex-direction: column;
-  box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.05); */
   width: 300px;
   height: 300px;
   border-radius: 10px;
@@ -59,6 +72,10 @@ export default {
   background-color: #f0f0f0;
   padding: 10px;
   text-align: center;
+  :hover {
+    cursor: pointer;
+    /* box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.2); */
+  }
 }
 
 .flag-img {
