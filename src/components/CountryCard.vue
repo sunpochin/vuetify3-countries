@@ -40,7 +40,6 @@ export default {
     parentMsg: Object,
   },
   methods: {
-    // 多加一個參數去接受事件物件
     showCountry: function () {
       console.log("showCountry", this.parentMsg.name);
     },

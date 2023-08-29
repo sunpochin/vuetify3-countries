@@ -2,13 +2,17 @@
 import { onMounted } from "vue";
 import data from "../assets/data.json";
 import CountryCard from "./CountryCard.vue";
+import { useCounterStore } from "@/store/app.js";
+
+const counterStore = useCounterStore();
 
 defineProps({
   msg: String,
 });
 
 onMounted(() => {
-  console.log("data: ", data[0]);
+  counterStore.countryData = data;
+  console.log("counterStore.countryData: ", counterStore.countryData[0]);
 });
 </script>
 

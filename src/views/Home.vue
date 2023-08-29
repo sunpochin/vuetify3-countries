@@ -22,12 +22,17 @@
 <script setup>
 import CountryList from "@/components/CountryList.vue";
 import { ref } from "vue";
+import { useCounterStore } from "@/store/app.js";
+const counterStore = useCounterStore();
+
 let searchBoxClosed = ref(true);
 let searchText = ref("");
 function text_change(event) {
   console.log("event: ", event);
   console.log("event.target.value: ", event.target.value);
   console.log("searchText: ", searchText.value);
+  counterStore.increment();
+  console.log(counterStore.countryData);
 }
 </script>
 
