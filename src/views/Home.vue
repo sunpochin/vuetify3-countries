@@ -28,11 +28,20 @@ const counterStore = useCounterStore();
 let searchBoxClosed = ref(true);
 let searchText = ref("");
 function text_change(event) {
-  console.log("event: ", event);
-  console.log("event.target.value: ", event.target.value);
+  // console.log("event: ", event);
+  // console.log("event.target.value: ", event.target.value);
   console.log("searchText: ", searchText.value);
   counterStore.increment();
-  console.log(counterStore.countryData);
+
+  counterStore.filteredCountryData = counterStore.allCountryData.filter(
+    (country) =>
+      country.name.toLowerCase().includes(searchText.value.toLowerCase()),
+  );
+  console.log("all", counterStore.allCountryData.length);
+  console.log("filtered", counterStore.filteredCountryData.length);
+  // counterStore.filteredCountryData.forEach((country) => {
+  //   console.log("country name: ", country.name);
+  // });
 }
 </script>
 

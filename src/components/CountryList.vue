@@ -11,15 +11,20 @@ defineProps({
 });
 
 onMounted(() => {
-  counterStore.countryData = data;
-  console.log("counterStore.countryData: ", counterStore.countryData[0]);
+  counterStore.allCountryData = data;
+  counterStore.filteredCountryData = data;
+  console.log("counterStore.allCountryData: ", counterStore.allCountryData[0]);
 });
 </script>
 
 <template>
   <div class="country-list">
     <div class="grid-container">
-      <div v-for="(item, index) in data" :key="index" class="grid-item">
+      <div
+        v-for="(item, index) in counterStore.filteredCountryData"
+        :key="index"
+        class="grid-item"
+      >
         <CountryCard :parent-msg="item" />
       </div>
     </div>
