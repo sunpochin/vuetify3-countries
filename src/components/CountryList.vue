@@ -6,14 +6,17 @@ import { useCounterStore } from "@/store/app.js";
 
 const counterStore = useCounterStore();
 
-defineProps({
-  msg: String,
-});
+// defineProps({
+//   msg: String,
+// });
 
 onMounted(() => {
   counterStore.allCountryData = data;
   counterStore.filteredCountryData = data;
-  console.log("counterStore.allCountryData: ", counterStore.allCountryData[0]);
+  console.log(
+    "counterStore.filteredCountryData: ",
+    counterStore.filteredCountryData[0],
+  );
 });
 </script>
 
@@ -21,7 +24,7 @@ onMounted(() => {
   <div class="country-list">
     <div class="grid-container">
       <div
-        v-for="(item, index) in counterStore.filteredCountryData"
+        v-for="(item, key, index) in counterStore.filteredCountryData"
         :key="index"
         class="grid-item"
       >

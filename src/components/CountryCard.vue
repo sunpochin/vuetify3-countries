@@ -30,32 +30,18 @@
   </div>
 </template>
 
-<script>
-// defineProps({
-//   parentMsg: Object
-// })
-export default {
-  name: "CountryCard",
-  props: {
-    parentMsg: Object,
-  },
-  methods: {
-    showCountry: function () {
-      console.log("showCountry", this.parentMsg.name);
+<script setup>
+defineProps({
+  parentMsg: {
+    type: Object,
+    default: {
+      name: "country name",
     },
   },
-
-  // setup(props) {
-  //   console.log('parentMsg: ', props.parentMsg)
-  //   return {
-  //     props: ["parentMsg"]
-  //   }
-  // }
-};
-
-// function showCountry() {
-//   console.log("showCountry");
-// }
+});
+function showCountry() {
+  console.log("showCountry", this.parentMsg.name);
+}
 </script>
 
 <style>

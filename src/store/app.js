@@ -12,8 +12,8 @@ import { defineStore } from "pinia";
 export const useCounterStore = defineStore("counter", {
   //定義狀態初始值
   state: () => ({
-    allCountryData: [""],
-    filteredCountryData: [""],
+    allCountryData: {},
+    filteredCountryData: {},
   }),
   //對狀態加工的 getters，如同 computed
   getters: {
