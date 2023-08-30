@@ -22,8 +22,8 @@
         <div class="font-weight-bold">
           {{ parentMsg.name }}
         </div>
-        <div>
-          {{ parentMsg.name }}
+        <div class="font-weight-bold">
+          <strong>Population:</strong> {{ parentMsg.population }}
         </div>
       </v-card-text>
     </v-card>
@@ -31,16 +31,21 @@
 </template>
 
 <script setup>
-defineProps({
+import router from "@/router/index.js";
+
+const props = defineProps({
   parentMsg: {
     type: Object,
-    default: {
-      name: "country name",
-    },
+    required: true,
   },
 });
+
 function showCountry() {
-  console.log("showCountry", this.parentMsg.name);
+  console.log("showCountry", props.parentMsg.alpha3Code);
+  router.push({
+    name: "CountryView",
+    params: { code: props.parentMsg.alpha3Code },
+  });
 }
 </script>
 

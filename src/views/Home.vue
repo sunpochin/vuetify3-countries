@@ -40,7 +40,6 @@ onMounted(() => {
 });
 
 function text_change(event) {
-  // console.log("event: ", event);
   // console.log("event.target.value: ", event.target.value);
   console.log("searchText: ", searchText.value);
 
@@ -50,9 +49,6 @@ function text_change(event) {
   );
   console.log("all", counterStore.allCountryData.length);
   console.log("filtered", counterStore.filteredCountryData.length);
-  // counterStore.filteredCountryData.forEach((country) => {
-  //   console.log("country name: ", country.name);
-  // });
 }
 </script>
 

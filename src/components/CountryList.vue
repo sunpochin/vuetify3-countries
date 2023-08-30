@@ -24,7 +24,7 @@ onMounted(() => {
   <div class="country-list">
     <div class="grid-container">
       <div
-        v-for="(item, key, index) in counterStore.filteredCountryData"
+        v-for="(item, index) in counterStore.filteredCountryData"
         :key="index"
         class="grid-item"
       >
