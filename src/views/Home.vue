@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 style="margin: 16px 20px">Where in the world?</h1>
     <v-text-field
       v-model.trim="searchText"
       variant="outlined"

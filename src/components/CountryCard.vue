@@ -1,7 +1,7 @@
 <template lang="">
   <div class="country-card" @click="showCountry">
     <v-card width="300" height="300">
-      <v-img :src="parentMsg.flag" width="100%" height="180px" cover></v-img>
+      <v-img :src="parentMsg.flag" width="100%" height="180px" cover />
       <hr />
       <v-card-text class="px-6 py-2 text-left">
         <div class="font-weight-bold">
