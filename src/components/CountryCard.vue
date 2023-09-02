@@ -1,14 +1,15 @@
 <template lang="">
   <div class="country-card" @click="showCountry">
     <v-card width="300" height="300">
-      <img class="flag-img" :src="parentMsg.flag" />
-      <v-card-text class="px-4 py-0 grey--text">
+      <v-img :src="parentMsg.flag" width="100%" height="180px" cover></v-img>
+      <hr />
+      <v-card-text class="px-6 py-2 text-left">
         <div class="font-weight-bold">
           {{ parentMsg.name }}
         </div>
-        <div class="font-weight-bold">
-          <strong>Population:</strong> {{ parentMsg.population }}
-        </div>
+        <div>Population: {{ parentMsg.population }}</div>
+        <div>Region: {{ parentMsg.region }}</div>
+        <div>Capital: {{ parentMsg.capital }}</div>
       </v-card-text>
     </v-card>
   </div>
