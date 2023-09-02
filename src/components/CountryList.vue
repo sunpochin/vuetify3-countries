@@ -3,13 +3,10 @@ import { onMounted } from "vue";
 import data from "../assets/data.json";
 import CountryCard from "./CountryCard.vue";
 import { useCounterStore } from "@/store/app.js";
-
 const counterStore = useCounterStore();
-
 // defineProps({
 //   msg: String,
 // });
-
 onMounted(() => {
   counterStore.allCountryData = data;
   counterStore.filteredCountryData = data;

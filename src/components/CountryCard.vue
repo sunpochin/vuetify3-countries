@@ -1,23 +1,7 @@
 <template lang="">
-  <!-- <div class="country-card">
-    <img class="cover-img" :src="parentMsg.flag" loading="lazy" />
-    <div class="details">
-      <div>
-        {{ parentMsg.name }}
-      </div>
-      <div><strong>Population:</strong> {{ parentMsg.population }}</div>
-      <div>
-        {{ parentMsg.region }}
-      </div>
-      <div>
-        {{ parentMsg.capital }}
-      </div>
-    </div>
-  </div> -->
-
   <div class="country-card" @click="showCountry">
     <v-card width="300" height="300">
-      <img class="flag-img country-card" :src="parentMsg.flag" />
+      <img class="flag-img" :src="parentMsg.flag" />
       <v-card-text class="px-4 py-0 grey--text">
         <div class="font-weight-bold">
           {{ parentMsg.name }}
@@ -56,7 +40,7 @@ function showCountry() {
   /* box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.05); */
   width: 300px;
   height: 300px;
-  border-radius: 10px;
+  border-radius: 20px;
   /* border: 5px solid #ccc; */
 
   background-color: #f0f0f0;
@@ -72,6 +56,7 @@ function showCountry() {
   width: 100%;
   height: 180px;
   object-fit: cover;
+  box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.05);
 }
 
 .details {
