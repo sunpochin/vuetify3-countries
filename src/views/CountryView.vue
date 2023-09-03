@@ -8,43 +8,28 @@
         <router-link to="/" class="text-decoration-none">Back</router-link>
       </v-btn>
 
-      <div class="d-flex flex-row">
+      <div className="details">
         <div>
           <img className="flagImage" :src="countryData.flag" />
         </div>
-        <div class="ma-6">
-          <h1>
+
+        <div class="flex-col">
+          <h1 class="ma-6">
             <strong>{{ countryData.name }}</strong>
           </h1>
-          <div>
-            <strong>Native Name: </strong>
-            {{ countryData.nativeName }}
-          </div>
-          <div>
-            <strong>Population: </strong>
-            {{ countryData.population }}
-          </div>
-          <div>
-            <strong>Region: </strong>
-            {{ countryData.region }}
-          </div>
-          <div>
-            <strong>Sub Region: </strong>
-            {{ countryData.subregion }}
-          </div>
-          <div>
-            <strong>Capital: </strong>
-            {{ countryData.capital }}
-          </div>
-        </div>
-        <div>
-          <div>
-            <strong>Top Level Domain: </strong>
-            {{ countryData.topLevelDomain }}
-          </div>
-          <div>
-            <strong>Currencies: </strong>
-            {{ countryData.currencies }}
+          <div className="leftright">
+            <div class="ma-6">
+              <div v-for="(field, key) in infoFieldsLeft" :key="key">
+                <strong>{{ key }}: </strong>
+                {{ field }}
+              </div>
+            </div>
+            <div class="ma-6">
+              <div v-for="(field, key) in infoFieldsRight" :key="key">
+                <strong>{{ key }}: </strong>
+                {{ field }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -54,7 +39,7 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { onMounted, ref, onBeforeMount } from "vue";
+import { onMounted, computed, ref, reactive, onBeforeMount } from "vue";
 
 let countryData = ref({});
 
@@ -70,6 +55,17 @@ onBeforeMount(() => {
       countryData.value = data;
     });
 });
+
+const infoFieldsLeft = computed(() => ({
+  "Native Name": countryData.value.nativeName,
+  Population: countryData.value.population,
+  Region: countryData.value.region,
+}));
+
+const infoFieldsRight = computed(() => ({
+  "Sub Region": countryData.value.subregion,
+  Capital: countryData.value.capital,
+}));
 </script>
 
 <style scoped>
@@ -79,5 +75,25 @@ onBeforeMount(() => {
   object-fit: cover;
   /* position: absolute; */
   width: 300px;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.leftright {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 </style>

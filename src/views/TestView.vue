@@ -1,73 +1,58 @@
 <template>
   <div>
-    <!-- https://book.vue.tw/CH4/4-2-route-settings.html
-    <h1>Country View {{ $route.params.code }}</h1> -->
-    <div>
-      <div>number: {{ number }} squaredNumber: {{ squaredNumber }}</div>
-    </div>
+    <ul class="details">
+      <li v-for="(entry, position) in entries" :key="position" class="group">
+        <div v-for="(value, label) in entry" :key="label">
+          <b>{{ label }}</b>
+          {{ value }}
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
-<script>
-import { ref, computed } from "vue";
-
-export default {
-  setup() {
-    // 使用 ref 创建一个响应式变量
-    const number = ref(111);
-
-    // 使用 computed 创建一个计算属性
-    const squaredNumber = computed(() => {
-      return number.value ** 2;
-    });
-
-    // 定义一个方法来增加数字
-    const incrementNumber = () => {
-      number.value++;
-    };
-
-    return {
-      number,
-      squaredNumber,
-      incrementNumber,
-    };
-  },
-};
-</script>
-
 <script setup>
-import { useRoute } from "vue-router";
-import { computed, onMounted, ref, onBeforeMount } from "vue";
+import { onMounted, reactive, onBeforeMount, ref, computed } from "vue";
 
-let num = 1;
-let xxx = computed(() => {
-  return num;
-});
+// const details = ref({
+//   "Native Name": "NativeNameValue",
+//   Population: "PopulationValue",
+//   Region: "RegionValue",
+// });
 
-let countryData = ref({});
+let details = ref({});
 
 onBeforeMount(() => {
-  num = 10;
-
-  const route = useRoute();
-  const code = route.params.code;
-  console.log("code: ", code);
-
-  fetch(`https://restcountries.com/v2/alpha/${code}`)
+  fetch(`https://restcountries.com/v2/alpha/bel`)
     .then((res) => res.json())
     .then((data) => {
       console.log("data: ", data);
-      countryData.value = data;
+      details.value = data;
     });
+});
+
+const entries = computed(() => {
+  const sasa = Object.entries(details).map(([list]) =>
+    list.map(({ label, value }) => (label, value)),
+  );
+  return sasa;
+
+  // return Object.entries(details).map(([position, list]) =>
+  //   list.map(({ label, value }) => (label, value)),
+  // );
+  // return Object.entries(details.value).map(([label, value]) => ({
+  //   label,
+  //   value,
+  // }));
 });
 </script>
 
 <style scoped>
-.flagImage {
-  margin: 20px;
-  height: 200px;
-  object-fit: cover;
-  /* position: absolute; */
-  width: 300px;
+.details {
+  /* 样式类名 .details 的样式 */
+}
+
+.group {
+  /* 样式类名 .group 的样式 */
 }
 </style>
