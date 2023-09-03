@@ -6,6 +6,12 @@
     <v-main class="px-15">
       <router-view />
     </v-main>
+    <v-footer app class="">
+      source code:
+      <a href="https://github.com/sunpochin/vuetify3-countries"
+        >https://github.com/sunpochin/vuetify3-countries</a
+      >
+    </v-footer>
   </v-app>
 </template>
 
