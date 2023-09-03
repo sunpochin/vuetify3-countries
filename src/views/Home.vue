@@ -7,7 +7,7 @@
       filled
       placeholder="Search"
       prepend-inner-icon="mdi-magnify"
-      class="mx-6 pt-6 shrink expanding-search"
+      class="pt-6 shrink expanding-search"
       :class="{ closed: searchBoxClosed && !searchText }"
       @focus="searchBoxClosed = false"
       @blur="searchBoxClosed = true"

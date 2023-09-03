@@ -2,8 +2,8 @@
   <div>
     <!-- https://book.vue.tw/CH4/4-2-route-settings.html
     <h1>Country View {{ $route.params.code }}</h1> -->
-    <div>
-      <v-btn class="ma-6">
+    <div className="detail-wrapper">
+      <v-btn class="my-6">
         <v-icon>mdi-arrow-left</v-icon>
         <router-link to="/" class="text-decoration-none">Back</router-link>
       </v-btn>
@@ -14,17 +14,17 @@
         </div>
 
         <div class="flex-col">
-          <h1 class="ma-6">
+          <h1 class="my-6">
             <strong>{{ countryData.name }}</strong>
           </h1>
           <div className="leftright">
-            <div class="ma-6">
+            <div class="my-6">
               <div v-for="(field, key) in infoFieldsLeft" :key="key">
                 <strong>{{ key }}: </strong>
                 {{ field }}
               </div>
             </div>
-            <div class="ma-6">
+            <div class="my-6">
               <div v-for="(field, key) in infoFieldsRight" :key="key">
                 <strong>{{ key }}: </strong>
                 {{ field }}
@@ -69,17 +69,24 @@ const infoFieldsRight = computed(() => ({
 </script>
 
 <style scoped>
+.detail-wrapper {
+  margin: 0 6rem;
+}
 .flagImage {
-  margin: 20px;
-  height: 200px;
+  max-height: 400px;
   object-fit: cover;
   /* position: absolute; */
-  width: 300px;
+  max-width: 800px;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 
 .details {
   display: flex;
-  flex-direction: row;
+  align-items: left;
+  gap: 4rem;
   justify-content: space-between;
 
   @media (max-width: 600px) {
@@ -91,6 +98,7 @@ const infoFieldsRight = computed(() => ({
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 4rem;
 
   @media (max-width: 600px) {
     flex-direction: column;
