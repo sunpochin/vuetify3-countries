@@ -1,9 +1,9 @@
 <template>
-  <v-app className="container">
-    <v-app-bar className="container">
-      <h1>Where in the world?</h1>
+  <v-app>
+    <v-app-bar color="grey-lighten-4">
+      <v-app-bar-title>Where in the world?</v-app-bar-title>
     </v-app-bar>
-    <v-main>
+    <v-main class="px-15">
       <router-view />
     </v-main>
   </v-app>
@@ -13,8 +13,4 @@
 //
 </script>
 
-<style>
-.container {
-  margin: 0 6rem;
-}
-</style>
+<style scoped></style>
