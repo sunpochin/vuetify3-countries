@@ -39,15 +39,15 @@ function showCountry() {
   /* box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.05); */
   width: 100%;
   height: 300px;
-  border-radius: 4px;
+  border-radius: 6px;
   /* border: 5px solid #ccc; */
   background-color: #ffffff;
   text-align: center;
   align-content: center;
 
-  :hover {
+  &:hover {
     cursor: pointer;
-    /* box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.2); */
+    box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.2);
   }
 }
 

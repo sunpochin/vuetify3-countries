@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="all-view">
     <v-text-field
       v-model.trim="searchText"
       variant="outlined"
@@ -53,6 +53,11 @@ function text_change(event) {
 </script>
 
 <style lang="scss">
+.all-view {
+  background-color: #f0f0f0;
+  padding: 1rem;
+}
+
 .v-input.expanding-search {
   transition: max-width 0.5s;
   max-width: 500px;

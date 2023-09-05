@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="country-list">
+  <div>
     <div class="grid-container">
       <div
         v-for="(item, index) in counterStore.filteredCountryData"
@@ -30,16 +30,11 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.country-list {
-  background-color: #f0f0f0;
-}
-
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   justify-content: space-between;
-  margin: 1rem;
   align-content: center;
 
   @media (max-width: 1024px) {
@@ -61,5 +56,6 @@ onMounted(() => {
   /* padding: 10px;
   text-align: center;
   align-content: center; */
+  border-radius: 20px;
 }
 </style>
