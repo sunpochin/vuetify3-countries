@@ -29,10 +29,20 @@
             </div>
           </div>
         </div>
-        <div>Borders:</div>
-        <div v-for="border in Borders" :key="border.name">
-          {{ Borders }}
-          {{ border.name }}
+
+        <div v-if="loading">Loading...</div>
+        <div v-else>
+          <div>Borders:</div>
+          <div v-if="Borders.length === 0">None</div>
+          <ul v-else>
+            <li v-for="border in Borders" :key="border.alpha3Code">
+              <router-link
+                :to="`/country/${border.alpha3Code}`"
+                class="text-decoration-none"
+                >{{ border.name }}</router-link
+              >
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -41,12 +51,21 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { onMounted, computed, ref, reactive, onBeforeMount } from "vue";
+import {
+  computed,
+  ref,
+  reactive,
+  onBeforeMount,
+  onActivated,
+  onUpdated,
+} from "vue";
 
 let countryData = ref({});
 let Borders = ref([]);
+let loading = ref(false);
 
 async function fetchWithCode({ code, params }) {
+  loading.value = false;
   const baseUrl = "https://restcountries.com/v2";
   const queryString = new URLSearchParams(params).toString();
   console.log(
@@ -66,12 +85,16 @@ async function fetchCountryBorders(countryBorders) {
           params: {
             fields: "name,alpha3Code",
           },
-        }).then((res) => res.name),
+        }),
+      // .then((res) => res.name),
       // }).then((res) => {
       //   console.log("res: ", res);
       // }),
     ),
   );
+  console.log("countryBordersResults: ", countryBordersResults);
+  Borders.value = countryBordersResults;
+
   return countryBordersResults;
 }
 
@@ -86,8 +109,8 @@ onBeforeMount(() => {
       countryData.value = data;
       console.log("borders: ", countryData.value.borders);
       fetchCountryBorders(countryData.value.borders).then((res) => {
-        Borders.value.borders = res;
-        console.log("borders: ", Borders.value.borders);
+        // Borders.value = res;
+        console.log("fetched borders: ", Borders.value);
       });
     });
 });
