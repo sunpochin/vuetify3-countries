@@ -1,34 +1,32 @@
 <template>
-  <div>
-    <!-- https://book.vue.tw/CH4/4-2-route-settings.html
+  <!-- https://book.vue.tw/CH4/4-2-route-settings.html
     <h1>Country View {{ $route.params.code }}</h1> -->
-    <div className="detail-wrapper">
-      <v-btn class="my-6">
-        <v-icon>mdi-arrow-left</v-icon>
-        <router-link to="/" class="text-decoration-none">Back</router-link>
-      </v-btn>
+  <div className="detail-wrapper">
+    <v-btn class="my-6">
+      <v-icon>mdi-arrow-left</v-icon>
+      <router-link to="/" class="text-decoration-none">Back</router-link>
+    </v-btn>
 
-      <div className="details">
-        <div>
-          <img className="flagImage" :src="countryData.flag" />
-        </div>
+    <div className="details">
+      <div>
+        <img className="flagImage" :src="countryData.flag" />
+      </div>
 
-        <div class="flex-col">
-          <h1 class="my-6">
-            <strong>{{ countryData.name }}</strong>
-          </h1>
-          <div className="leftright">
-            <div class="my-6">
-              <div v-for="(field, key) in infoFieldsLeft" :key="key">
-                <strong>{{ key }}: </strong>
-                {{ field }}
-              </div>
+      <div class="flex-col">
+        <h1 class="my-6">
+          <strong>{{ countryData.name }}</strong>
+        </h1>
+        <div class="leftright">
+          <div class="my-6">
+            <div v-for="(field, key) in infoFieldsLeft" :key="key">
+              <strong>{{ key }}: </strong>
+              {{ field }}
             </div>
-            <div class="my-6">
-              <div v-for="(field, key) in infoFieldsRight" :key="key">
-                <strong>{{ key }}: </strong>
-                {{ field }}
-              </div>
+          </div>
+          <div class="my-6">
+            <div v-for="(field, key) in infoFieldsRight" :key="key">
+              <strong>{{ key }}: </strong>
+              {{ field }}
             </div>
           </div>
         </div>
@@ -70,21 +68,22 @@ const infoFieldsRight = computed(() => ({
 
 <style scoped>
 .detail-wrapper {
-  margin: 0 6rem;
+  background-color: #f0f0f0;
+  padding: 0 3rem;
 
   @media (max-width: 600px) {
-    margin: 0 1rem;
+    padding: 0 1rem;
     justify-content: space-around;
     align-content: center;
   }
 }
 .flagImage {
   max-height: 400px;
+  max-width: 600px;
   object-fit: cover;
-  max-width: 800px;
 
   @media (max-width: 600px) {
-    width: 300px;
+    max-width: 300px;
     max-height: 240px;
     align-content: center;
   }

@@ -1,6 +1,5 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
-//import CountryView from "@/views/CountryView.vue";
 
 const routes = [
   {
@@ -11,7 +10,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("@/views/Home.vue"),
+    component: () => import("@/views/AllView.vue"),
   },
   {
     path: "/test",
