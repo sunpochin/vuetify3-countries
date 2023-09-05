@@ -43,10 +43,11 @@ function showCountry() {
   height: 300px;
   border-radius: 20px;
   /* border: 5px solid #ccc; */
-
   background-color: #f0f0f0;
   padding: 10px;
   text-align: center;
+  align-content: center;
+
   :hover {
     cursor: pointer;
     /* box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.2); */
