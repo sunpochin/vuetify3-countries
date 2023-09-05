@@ -1,17 +1,15 @@
 <template lang="">
   <div class="country-card" @click="showCountry">
-    <v-card width="300" height="300">
-      <v-img :src="parentMsg.flag" width="100%" height="180px" cover />
-      <hr />
-      <v-card-text class="px-6 py-2 text-left">
-        <div class="font-weight-bold">
-          {{ parentMsg.name }}
-        </div>
-        <div>Population: {{ parentMsg.population }}</div>
-        <div>Region: {{ parentMsg.region }}</div>
-        <div>Capital: {{ parentMsg.capital }}</div>
-      </v-card-text>
-    </v-card>
+    <v-img :src="parentMsg.flag" width="100%" height="180px" cover />
+    <hr />
+    <v-card-text class="px-6 py-2 text-left">
+      <div class="font-weight-bold">
+        {{ parentMsg.name }}
+      </div>
+      <div>Population: {{ parentMsg.population }}</div>
+      <div>Region: {{ parentMsg.region }}</div>
+      <div>Capital: {{ parentMsg.capital }}</div>
+    </v-card-text>
   </div>
 </template>
 
@@ -39,11 +37,11 @@ function showCountry() {
   display: flex;
   flex-direction: column;
   /* box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.05); */
-  width: 300px;
+  width: 100%;
   height: 300px;
-  border-radius: 20px;
+  border-radius: 10px;
   /* border: 5px solid #ccc; */
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   padding: 10px;
   text-align: center;
   align-content: center;
