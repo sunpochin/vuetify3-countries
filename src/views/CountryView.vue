@@ -51,18 +51,37 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import {
-  computed,
-  ref,
-  reactive,
-  onBeforeMount,
-  onActivated,
-  onUpdated,
-} from "vue";
+import { computed, ref, onBeforeMount, watch } from "vue";
 
 let countryData = ref({});
 let Borders = ref([]);
 let loading = ref(false);
+const route = useRoute();
+
+async function fetchData(code) {
+  fetch(`https://restcountries.com/v2/alpha/${code}`)
+    .then((res) => res.json())
+    .then((data) => {
+      countryData.value = data;
+      console.log("borders: ", countryData.value.borders);
+      fetchCountryBorders(countryData.value.borders).then((res) => {
+        // Borders.value = res;
+        console.log("fetched borders: ", Borders.value);
+      });
+    });
+}
+
+watch(
+  () => route.params.code,
+  (newCode, oldCode) => {
+    if (newCode !== oldCode) {
+      loading.value = true;
+      fetchData(newCode).then(() => {
+        loading.value = false;
+      });
+    }
+  },
+);
 
 async function fetchWithCode({ code, params }) {
   loading.value = false;
@@ -99,20 +118,7 @@ async function fetchCountryBorders(countryBorders) {
 }
 
 onBeforeMount(() => {
-  const route = useRoute();
-  const code = route.params.code;
-  console.log("code: ", code);
-
-  fetch(`https://restcountries.com/v2/alpha/${code}`)
-    .then((res) => res.json())
-    .then((data) => {
-      countryData.value = data;
-      console.log("borders: ", countryData.value.borders);
-      fetchCountryBorders(countryData.value.borders).then((res) => {
-        // Borders.value = res;
-        console.log("fetched borders: ", Borders.value);
-      });
-    });
+  fetchData(route.params.code);
 });
 
 const infoFieldsLeft = computed(() => ({
