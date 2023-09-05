@@ -1,7 +1,6 @@
 <template lang="">
   <div class="country-card" @click="showCountry">
     <img :src="parentMsg.flag" class="flag-img" />
-    <hr />
     <div class="px-6 py-2 text-left">
       <div class="pb-2 font-weight-bold">
         {{ parentMsg.name }}
@@ -36,10 +35,11 @@ function showCountry() {
 .country-card {
   display: flex;
   flex-direction: column;
-  /* box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.05); */
+  box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   height: 300px;
-  border-radius: 6px;
+  overflow: hidden;
+  border-radius: 8px;
   /* border: 5px solid #ccc; */
   background-color: #ffffff;
   text-align: center;
@@ -47,7 +47,7 @@ function showCountry() {
 
   &:hover {
     cursor: pointer;
-    box-shadow: 3.4px 6.7px 6.7px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.2);
   }
 }
 

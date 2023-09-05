@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar color="grey-lighten-4">
-      <v-app-bar-title>Where in the world?</v-app-bar-title>
+      <v-app-bar-title><h2>Where in the world?</h2></v-app-bar-title>
     </v-app-bar>
     <v-main>
       <router-view />

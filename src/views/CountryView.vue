@@ -1,29 +1,28 @@
 <template>
   <!-- https://book.vue.tw/CH4/4-2-route-settings.html
     <h1>Country View {{ $route.params.code }}</h1> -->
-  <div className="detail-wrapper">
+  <div class="detail-wrapper">
     <v-btn class="my-6">
       <v-icon>mdi-arrow-left</v-icon>
       <router-link to="/" class="text-decoration-none">Back</router-link>
     </v-btn>
 
-    <div className="details">
-      <div>
-        <img className="flagImage" :src="countryData.flag" />
+    <div class="details">
+      <div class="flag-wrapper">
+        <img class="flag-image" :src="countryData.flag" />
       </div>
-
       <div class="flex-col">
         <h1 class="my-6">
           <strong>{{ countryData.name }}</strong>
         </h1>
         <div class="leftright">
-          <div class="my-6">
+          <div class="my-6 group">
             <div v-for="(field, key) in infoFieldsLeft" :key="key">
               <strong>{{ key }}: </strong>
               {{ field }}
             </div>
           </div>
-          <div class="my-6">
+          <div class="my-6 group">
             <div v-for="(field, key) in infoFieldsRight" :key="key">
               <strong>{{ key }}: </strong>
               {{ field }}
@@ -68,6 +67,9 @@ const infoFieldsRight = computed(() => ({
 
 <style scoped>
 .detail-wrapper {
+  min-height: 100vh; /* 设置最小高度为视口高度 */
+  max-width: 100%;
+
   background-color: #f0f0f0;
   padding: 0 3rem;
 
@@ -77,9 +79,24 @@ const infoFieldsRight = computed(() => ({
     align-content: center;
   }
 }
-.flagImage {
+
+.details {
+  max-width: 100%;
+  display: flex;
+  gap: 4rem;
+  justify-content: space-between;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.flag-wrapper {
+  flex: 1;
+}
+.flag-image {
   max-height: 400px;
   max-width: 600px;
+  width: 100%;
   object-fit: cover;
 
   @media (max-width: 600px) {
@@ -89,21 +106,18 @@ const infoFieldsRight = computed(() => ({
   }
 }
 
-.details {
-  display: flex;
-  /* align-items: left; */
-  gap: 1rem;
-  justify-content: space-between;
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
+.flex-col {
+  flex: 1;
 }
 
+.group {
+  flex: 1;
+}
 .leftright {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 1rem;
 
   @media (max-width: 600px) {
     flex-direction: column;
