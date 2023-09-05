@@ -34,7 +34,7 @@ function showCountry() {
 }
 </script>
 
-<style>
+<style scoped>
 .country-card {
   display: flex;
   flex-direction: column;

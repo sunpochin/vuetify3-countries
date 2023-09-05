@@ -3,10 +3,10 @@
     <v-app-bar color="grey-lighten-4">
       <v-app-bar-title>Where in the world?</v-app-bar-title>
     </v-app-bar>
-    <v-main class="px-15">
+    <v-main>
       <router-view />
     </v-main>
-    <v-footer app class="">
+    <v-footer app>
       source code:
       <a href="https://github.com/sunpochin/vuetify3-countries"
         >https://github.com/sunpochin/vuetify3-countries</a

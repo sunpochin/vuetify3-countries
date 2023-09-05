@@ -71,24 +71,30 @@ const infoFieldsRight = computed(() => ({
 <style scoped>
 .detail-wrapper {
   margin: 0 6rem;
+
+  @media (max-width: 600px) {
+    margin: 0 1rem;
+    justify-content: space-around;
+    align-content: center;
+  }
 }
 .flagImage {
   max-height: 400px;
   object-fit: cover;
-  /* position: absolute; */
   max-width: 800px;
 
   @media (max-width: 600px) {
-    max-width: 100%;
+    width: 300px;
+    max-height: 240px;
+    align-content: center;
   }
 }
 
 .details {
   display: flex;
-  align-items: left;
-  gap: 4rem;
+  /* align-items: left; */
+  gap: 1rem;
   justify-content: space-between;
-
   @media (max-width: 600px) {
     flex-direction: column;
   }
