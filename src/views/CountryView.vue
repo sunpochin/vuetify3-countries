@@ -29,6 +29,11 @@
             </div>
           </div>
         </div>
+        <div>Borders:</div>
+        <div v-for="border in Borders" :key="border.name">
+          {{ Borders }}
+          {{ border.name }}
+        </div>
       </div>
     </div>
   </div>
@@ -39,6 +44,36 @@ import { useRoute } from "vue-router";
 import { onMounted, computed, ref, reactive, onBeforeMount } from "vue";
 
 let countryData = ref({});
+let Borders = ref([]);
+
+async function fetchWithCode({ code, params }) {
+  const baseUrl = "https://restcountries.com/v2";
+  const queryString = new URLSearchParams(params).toString();
+  console.log(
+    "`${baseUrl}${code}?${queryString}`: ",
+    `${baseUrl}${code}?${queryString}`,
+  );
+  const res = await fetch(`${baseUrl}${code}?${queryString}`);
+  return await res.json();
+}
+
+async function fetchCountryBorders(countryBorders) {
+  const countryBordersResults = await Promise.all(
+    countryBorders.map(
+      async (border) =>
+        await fetchWithCode({
+          code: `/alpha/${border}`,
+          params: {
+            fields: "name,alpha3Code",
+          },
+        }).then((res) => res.name),
+      // }).then((res) => {
+      //   console.log("res: ", res);
+      // }),
+    ),
+  );
+  return countryBordersResults;
+}
 
 onBeforeMount(() => {
   const route = useRoute();
@@ -48,8 +83,12 @@ onBeforeMount(() => {
   fetch(`https://restcountries.com/v2/alpha/${code}`)
     .then((res) => res.json())
     .then((data) => {
-      console.log("data: ", data);
       countryData.value = data;
+      console.log("borders: ", countryData.value.borders);
+      fetchCountryBorders(countryData.value.borders).then((res) => {
+        Borders.value.borders = res;
+        console.log("borders: ", Borders.value.borders);
+      });
     });
 });
 
