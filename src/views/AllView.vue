@@ -1,20 +1,38 @@
 <template>
   <div class="all-view">
-    <v-text-field
-      v-model.trim="searchText"
-      variant="outlined"
-      dense
-      filled
-      placeholder="Search"
-      prepend-inner-icon="mdi-magnify"
-      class="pt-6 shrink expanding-search"
-      :class="{ closed: searchBoxClosed && !searchText }"
-      @focus="searchBoxClosed = false"
-      @blur="searchBoxClosed = true"
-      @input="text_change($event)"
-      clearable
-      @click:clear="searchText = ''"
-    />
+    <div class="search-select">
+      <v-text-field
+        v-model.trim="searchText"
+        variant="outlined"
+        dense
+        filled
+        placeholder="Search"
+        prepend-inner-icon="mdi-magnify"
+        class="pt-6 shrink expanding-search"
+        :class="{ closed: searchBoxClosed && !searchText }"
+        @focus="searchBoxClosed = false"
+        @blur="searchBoxClosed = true"
+        @input="text_change($event)"
+        clearable
+        @click:clear="searchText = ''"
+      />
+
+      <div>
+        <v-select
+          class="custom-width"
+          label="Filter by Region"
+          :items="[
+            'Africa',
+            'Americas',
+            'Asia',
+            'Europe',
+            'Oceania',
+            'Antarctica',
+          ]"
+          variant="outlined"
+        />
+      </div>
+    </div>
     <CountryList />
   </div>
 </template>
@@ -56,6 +74,17 @@ function text_change(event) {
 .all-view {
   background-color: #f0f0f0;
   padding: 1rem;
+}
+
+.custom-width {
+  width: 400px; /* 使用 CSS 自訂寬度 */
+}
+
+.search-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .v-input.expanding-search {

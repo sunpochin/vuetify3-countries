@@ -37,7 +37,7 @@
           <ul v-else>
             <li v-for="border in Borders" :key="border.alpha3Code">
               <router-link
-                :to="`/country/${border.alpha3Code}`"
+                v-bind:to="`/country/${border.alpha3Code}`"
                 class="text-decoration-none"
                 >{{ border.name }}</router-link
               >
