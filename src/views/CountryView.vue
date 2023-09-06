@@ -52,7 +52,6 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { computed, ref, onBeforeMount, watch } from "vue";
-
 let countryData = ref({});
 let Borders = ref([]);
 let loading = ref(false);

@@ -1,6 +1,6 @@
 <template>
   <div class="all-view">
-    <div class="search-select">
+    <div class="pt-6 search-select">
       <v-text-field
         v-model.trim="searchText"
         variant="outlined"
@@ -9,7 +9,7 @@
         clearable
         placeholder="Search"
         prepend-inner-icon="mdi-magnify"
-        class="pt-6 shrink expanding-search"
+        class="shrink expanding-search"
         :class="{ closed: searchBoxClosed && !searchText }"
         @focus="searchBoxClosed = false"
         @blur="searchBoxClosed = true"
@@ -19,14 +19,7 @@
       <div class="custom-width">
         <v-select
           label="Filter by Region"
-          :items="[
-            'Africa',
-            'Americas',
-            'Asia',
-            'Europe',
-            'Oceania',
-            'Antarctica',
-          ]"
+          :items="['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']"
           variant="outlined"
           @update:modelValue="onSelectChange"
         />
@@ -38,24 +31,33 @@
 
 <script setup>
 import CountryList from "@/components/CountryList.vue";
-import { ref, onMounted, watch } from "vue";
+import { ref, watch } from "vue";
 import { useCounterStore } from "@/store/app.js";
 
 const counterStore = useCounterStore();
 let searchBoxClosed = ref(true);
 let searchText = ref("");
+let regionValue = ref("");
 
-onMounted(() => {
-  console.log(
-    "counterStore.filteredCountryData: ",
-    counterStore.filteredCountryData[0],
-  );
-});
-
-function onSelectChange(value) {
-  // 在這裡處理選擇更改的邏輯
-  console.log("選擇已更改", value);
+function onSelectChange(newValue) {
+  console.log("選擇已更改", newValue);
+  regionValue.value = newValue;
 }
+
+watch(
+  () => regionValue.value,
+  (newCode, oldCode) => {
+    console.log("newCode: ", newCode, "oldCode: ", oldCode);
+    if (newCode !== oldCode) {
+      counterStore.filteredCountryData = counterStore.allCountryData.filter(
+        (country) =>
+          country.region
+            .toLowerCase()
+            .includes(regionValue.value.toLowerCase()),
+      );
+    }
+  },
+);
 
 watch(
   () => searchText.value,
@@ -79,7 +81,7 @@ watch(
 
 // https://sunpochin.hashnode.dev/vuetify-v-select-width-css-div
 .custom-width {
-  width: 600px;
+  width: 200px;
 }
 
 .search-select {
@@ -87,6 +89,11 @@ watch(
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .v-input.expanding-search {
