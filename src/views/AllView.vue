@@ -6,20 +6,18 @@
         variant="outlined"
         dense
         filled
+        clearable
         placeholder="Search"
         prepend-inner-icon="mdi-magnify"
         class="pt-6 shrink expanding-search"
         :class="{ closed: searchBoxClosed && !searchText }"
         @focus="searchBoxClosed = false"
         @blur="searchBoxClosed = true"
-        @input="text_change($event)"
-        clearable
         @click:clear="searchText = ''"
       />
 
-      <div>
+      <div class="custom-width">
         <v-select
-          class="custom-width"
           label="Filter by Region"
           :items="[
             'Africa',
@@ -30,6 +28,7 @@
             'Antarctica',
           ]"
           variant="outlined"
+          @update:modelValue="onSelectChange"
         />
       </div>
     </div>
@@ -39,45 +38,48 @@
 
 <script setup>
 import CountryList from "@/components/CountryList.vue";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { useCounterStore } from "@/store/app.js";
-const counterStore = useCounterStore();
 
+const counterStore = useCounterStore();
 let searchBoxClosed = ref(true);
 let searchText = ref("");
 
 onMounted(() => {
-  counterStore.filteredCountryData = counterStore.allCountryData.filter(
-    (country) =>
-      country.name.toLowerCase().includes(searchText.value.toLowerCase()),
-  );
   console.log(
-    "counterStore.allCountryData: ",
+    "counterStore.filteredCountryData: ",
     counterStore.filteredCountryData[0],
   );
 });
 
-function text_change(event) {
-  // console.log("event.target.value: ", event.target.value);
-  console.log("searchText: ", searchText.value);
-
-  counterStore.filteredCountryData = counterStore.allCountryData.filter(
-    (country) =>
-      country.name.toLowerCase().includes(searchText.value.toLowerCase()),
-  );
-  console.log("all", counterStore.allCountryData.length);
-  console.log("filtered", counterStore.filteredCountryData.length);
+function onSelectChange(value) {
+  // 在這裡處理選擇更改的邏輯
+  console.log("選擇已更改", value);
 }
+
+watch(
+  () => searchText.value,
+  (newCode, oldCode) => {
+    console.log("newCode: ", newCode, "oldCode: ", oldCode);
+    if (newCode !== oldCode) {
+      counterStore.filteredCountryData = counterStore.allCountryData.filter(
+        (country) =>
+          country.name.toLowerCase().includes(searchText.value.toLowerCase()),
+      );
+    }
+  },
+);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .all-view {
   background-color: #f0f0f0;
   padding: 1rem;
 }
 
+// https://sunpochin.hashnode.dev/vuetify-v-select-width-css-div
 .custom-width {
-  width: 400px; /* 使用 CSS 自訂寬度 */
+  width: 600px;
 }
 
 .search-select {
