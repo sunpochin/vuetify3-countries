@@ -9,8 +9,7 @@
         clearable
         placeholder="Search"
         prepend-inner-icon="mdi-magnify"
-        class="shrink expanding-search"
-        :class="{ closed: searchBoxClosed && !searchText }"
+        class="searchText"
         @focus="searchBoxClosed = false"
         @blur="searchBoxClosed = true"
         @click:clear="searchText = ''"
@@ -96,11 +95,14 @@ watch(
   }
 }
 
+.searchText {
+  max-width: 300px;
+}
 .v-input.expanding-search {
   transition: max-width 0.5s;
-  max-width: 500px;
+  max-width: 400px;
 }
 .v-input.closed {
-  max-width: 130px;
+  width: 300px;
 }
 </style>

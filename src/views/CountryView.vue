@@ -2,10 +2,12 @@
   <!-- https://book.vue.tw/CH4/4-2-route-settings.html
     <h1>Country View {{ $route.params.code }}</h1> -->
   <div class="detail-wrapper">
-    <v-btn class="my-6">
-      <v-icon>mdi-arrow-left</v-icon>
-      <router-link to="/" class="text-decoration-none">Back</router-link>
-    </v-btn>
+    <router-link to="/" class="text-decoration-none">
+      <v-btn class="my-6">
+        <v-icon>mdi-arrow-left</v-icon>
+        Back
+      </v-btn>
+    </router-link>
 
     <div class="details">
       <div class="flag-wrapper">
@@ -58,6 +60,9 @@ let loading = ref(false);
 const route = useRoute();
 
 async function fetchData(code) {
+  const retFetch = await fetch("https://restcountries.com/v2/alpha/col");
+  console.log("retFetch: ", retFetch);
+
   fetch(`https://restcountries.com/v2/alpha/${code}`)
     .then((res) => res.json())
     .then((data) => {
