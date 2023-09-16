@@ -31,7 +31,7 @@
 <script setup>
 import CountryList from "@/components/CountryList.vue";
 import { ref, watch } from "vue";
-import { useCounterStore } from "@/store/app.js";
+import { useCounterStore } from "@/store/counter.js";
 
 const counterStore = useCounterStore();
 let searchBoxClosed = ref(true);
@@ -106,3 +106,4 @@ watch(
   width: 300px;
 }
 </style>
+@/store/counter.js

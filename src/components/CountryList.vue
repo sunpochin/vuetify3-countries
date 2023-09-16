@@ -2,7 +2,7 @@
 import { onMounted } from "vue";
 import data from "../assets/data.json";
 import CountryCard from "./CountryCard.vue";
-import { useCounterStore } from "@/store/app.js";
+import { useCounterStore } from "@/store/counter.js";
 const counterStore = useCounterStore();
 
 onMounted(() => {
@@ -55,3 +55,4 @@ onMounted(() => {
   border-radius: 20px;
 }
 </style>
+@/store/counter.js
