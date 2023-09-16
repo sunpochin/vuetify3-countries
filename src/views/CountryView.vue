@@ -60,16 +60,13 @@ let loading = ref(false);
 const route = useRoute();
 
 async function fetchData(code) {
-  const retFetch = await fetch("https://restcountries.com/v2/alpha/col");
-  console.log("retFetch: ", retFetch);
-
   fetch(`https://restcountries.com/v2/alpha/${code}`)
     .then((res) => res.json())
     .then((data) => {
       countryData.value = data;
       console.log("borders: ", countryData.value.borders);
-      fetchCountryBorders(countryData.value.borders).then((res) => {
-        // Borders.value = res;
+      fetchCountryNamesWithCode(countryData.value.borders).then((res) => {
+        Borders.value = res;
         console.log("fetched borders: ", Borders.value);
       });
     });
@@ -96,25 +93,26 @@ async function fetchWithCode({ code, params }) {
     `${baseUrl}${code}?${queryString}`,
   );
   const res = await fetch(`${baseUrl}${code}?${queryString}`);
-  return await res.json();
+  const name = await res.json();
+  return name;
 }
 
-async function fetchCountryBorders(countryBorders) {
-  const countryBordersResults = await Promise.all(
-    countryBorders.map(
-      async (border) =>
+async function fetchCountryNamesWithCode(countryCodes) {
+  const countryNames = await Promise.all(
+    countryCodes.map(
+      async (code) =>
         await fetchWithCode({
-          code: `/alpha/${border}`,
+          code: `/alpha/${code}`,
           params: {
             fields: "name,alpha3Code",
           },
         }),
     ),
   );
-  console.log("countryBordersResults: ", countryBordersResults);
-  Borders.value = countryBordersResults;
+  console.log("countryNames: ", countryNames);
+  // Borders.value = countryNames;
 
-  return countryBordersResults;
+  return countryNames;
 }
 
 onBeforeMount(() => {
