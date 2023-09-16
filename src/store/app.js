@@ -1,14 +1,5 @@
 import { defineStore } from "pinia";
 
-// export const useAppStore = defineStore("app", {
-//   // 對應 data
-//   state: () => ({
-//     name: "Jenny",
-//     wallet: "300",
-//     countryData: [],
-//   }),
-// });
-
 export const useCounterStore = defineStore("counter", {
   //定義狀態初始值
   state: () => ({

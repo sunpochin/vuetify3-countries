@@ -109,10 +109,6 @@ async function fetchCountryBorders(countryBorders) {
             fields: "name,alpha3Code",
           },
         }),
-      // .then((res) => res.name),
-      // }).then((res) => {
-      //   console.log("res: ", res);
-      // }),
     ),
   );
   console.log("countryBordersResults: ", countryBordersResults);

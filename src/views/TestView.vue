@@ -14,11 +14,6 @@
 <script setup>
 import { onMounted, reactive, onBeforeMount, ref, computed } from "vue";
 
-// const details = ref({
-//   "Native Name": "NativeNameValue",
-//   Population: "PopulationValue",
-//   Region: "RegionValue",
-// });
 
 let details = ref({});
 
@@ -37,13 +32,6 @@ const entries = computed(() => {
   );
   return sasa;
 
-  // return Object.entries(details).map(([position, list]) =>
-  //   list.map(({ label, value }) => (label, value)),
-  // );
-  // return Object.entries(details.value).map(([label, value]) => ({
-  //   label,
-  //   value,
-  // }));
 });
 </script>
 

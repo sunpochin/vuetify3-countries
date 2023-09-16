@@ -52,10 +52,6 @@ onMounted(() => {
   }
 }
 .grid-item {
-  /* background-color: #f0f0f0; */
-  /* padding: 10px;
-  text-align: center;
-  align-content: center; */
   border-radius: 20px;
 }
 </style>
