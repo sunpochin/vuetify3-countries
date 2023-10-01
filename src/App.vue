@@ -8,9 +8,7 @@
     </v-main>
     <v-footer app>
       source code:
-      <a href="https://github.com/sunpochin/vuetify3-countries"
-        >https://github.com/sunpochin/vuetify3-countries</a
-      >
+      <a href="https://github.com/sunpochin/vuetify3-countries">https://github.com/sunpochin/vuetify3-countries</a>
     </v-footer>
   </v-app>
 </template>

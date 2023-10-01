@@ -1,6 +1,12 @@
 <template lang="">
-  <div class="country-card" @click="showCountry">
-    <img :src="parentMsg.flag" class="flag-img" />
+  <div
+    class="country-card"
+    @click="showCountry"
+  >
+    <img
+      :src="parentMsg.flag"
+      class="flag-img"
+    >
     <div class="px-6 py-2 text-left">
       <div class="pb-2 font-weight-bold">
         {{ parentMsg.name }}
@@ -12,7 +18,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import router from "@/router/index.js";
 
 const props = defineProps({

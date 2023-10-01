@@ -51,15 +51,14 @@
   </div>
 </template>
 
+<!-- <script setup lang="ts"> -->
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { computed, ref, onBeforeMount, watch } from "vue";
+import { computed, Ref, ref, onBeforeMount, watch } from "vue";
 
-// const countryData = ref<Record<string, any > >({});
 interface IBorder {
-  alpha3Code?: string;
-  name: string;
-  age: number;
+  alpha3Code: string;
+  name: number;
 }
 
 const data1 = {
@@ -78,7 +77,7 @@ const countryData = ref(data1);
 const borderArr: IBorder[] = [];
 const Borders: Ref<IBorder[]> = ref(borderArr);
 
-const loading = ref(false);
+let loading: Ref<boolean> = ref(false);
 
 const route = useRoute();
 
@@ -133,7 +132,7 @@ async function fetchWithCode({ code, params }) {
 async function fetchCountryNamesWithCode(countryCodes) {
   const countryNames = await Promise.all(
     countryCodes.map(
-      async (code) =>
+      async (code: string) =>
         await fetchWithCode({
           code: `/alpha/${code}`,
           params: {
