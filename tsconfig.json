@@ -1,0 +1,24 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.ts"],
+  "compilerOptions": {
+    "moduleResolution": "node", //指定模組解析策略, solution for Cannot find module 'vue'. Did you mean to set the 'moduleResolution' option to 'nodenext', or to add aliases to the 'paths' option?
+    "target": "es6", //指定編譯生成的JS版本
+    "module": "es2020", //指定生成哪種模組
+    // "strict": true, //啟用所有嚴格類型檢查選項
+    "esModuleInterop": true, //兼容模組導入的方式
+    "skipLibCheck": true, // 不會檢查引入的函式庫檔案
+    "forceConsistentCasingInFileNames": true, //確保檔案的大小寫一致
+    "baseUrl": ".",
+    "allowJs": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "ignoreDeprecations": "5.0"
+  },
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

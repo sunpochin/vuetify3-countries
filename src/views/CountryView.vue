@@ -34,7 +34,7 @@
 
         <div v-if="loading">Loading...</div>
         <div v-else>
-          <div>Borders:</div>
+          <div>Border countries:</div>
           <div v-if="Borders.length === 0">None</div>
           <ul v-else>
             <li v-for="border in Borders" :key="border.alpha3Code">
@@ -51,15 +51,43 @@
   </div>
 </template>
 
-<script setup>
+<!-- <script setup lang="ts"> -->
+<script setup lang="ts">
 import { useRoute } from "vue-router";
 import { computed, ref, onBeforeMount, watch } from "vue";
-let countryData = ref({});
-let Borders = ref([]);
+
+// interface IBorder {
+//   alpha3Code: string;
+//   name: number;
+// }
+
+const data1 = {
+  flag: "",
+  name: "",
+  population: 0,
+  region: "",
+  length: 0,
+  borders: [],
+  nativeName: "",
+  subregion: "",
+  capital: "",
+};
+const countryData = ref(data1);
+
+// const borderArr: IBorder[] = [];
+// const Borders: Ref<IBorder[]> = ref(borderArr);
+const Borders = ref<
+  {
+    alpha3Code: string
+    name: string
+  }[]
+>([]);
+
 let loading = ref(false);
+
 const route = useRoute();
 
-async function fetchData(code) {
+async function fetchData(code: string) {
   const countryDetail = await fetch(
     `https://restcountries.com/v2/alpha/${code}`,
   )
@@ -87,30 +115,30 @@ watch(
   (newCode, oldCode) => {
     if (newCode !== oldCode) {
       loading.value = true;
-      fetchData(newCode).then(() => {
+      fetchData(newCode as string).then(() => {
         loading.value = false;
       });
     }
   },
 );
 
-async function fetchWithCode({ code, params }) {
+async function fetchWithCode({ code, params} : {code: string, params: any} ) {
   loading.value = false;
   const baseUrl = "https://restcountries.com/v2";
   const queryString = new URLSearchParams(params).toString();
-  console.log(
-    "`${baseUrl}${code}?${queryString}`: ",
-    `${baseUrl}${code}?${queryString}`,
-  );
+  // console.log(
+  //   "`${baseUrl}${code}?${queryString}`: ",
+  //   `${baseUrl}${code}?${queryString}`,
+  // );
   const res = await fetch(`${baseUrl}${code}?${queryString}`);
   const name = await res.json();
   return name;
 }
 
-async function fetchCountryNamesWithCode(countryCodes) {
+async function fetchCountryNamesWithCode(countryCodes: string[]) {
   const countryNames = await Promise.all(
     countryCodes.map(
-      async (code) =>
+      async (code: string) =>
         await fetchWithCode({
           code: `/alpha/${code}`,
           params: {
@@ -126,7 +154,7 @@ async function fetchCountryNamesWithCode(countryCodes) {
 }
 
 onBeforeMount(() => {
-  fetchData(route.params.code);
+  fetchData(route.params.code as string);
 });
 
 const infoFieldsLeft = computed(() => ({
