@@ -54,12 +54,12 @@
 <!-- <script setup lang="ts"> -->
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { computed, Ref, ref, onBeforeMount, watch } from "vue";
+import { computed, ref, onBeforeMount, watch } from "vue";
 
-interface IBorder {
-  alpha3Code: string;
-  name: number;
-}
+// interface IBorder {
+//   alpha3Code: string;
+//   name: number;
+// }
 
 const data1 = {
   flag: "",
@@ -74,14 +74,20 @@ const data1 = {
 };
 const countryData = ref(data1);
 
-const borderArr: IBorder[] = [];
-const Borders: Ref<IBorder[]> = ref(borderArr);
+// const borderArr: IBorder[] = [];
+// const Borders: Ref<IBorder[]> = ref(borderArr);
+const Borders = ref<
+  {
+    alpha3Code: string
+    name: string
+  }[]
+>([]);
 
-let loading: Ref<boolean> = ref(false);
+let loading = ref(false);
 
 const route = useRoute();
 
-async function fetchData(code) {
+async function fetchData(code: string) {
   const countryDetail = await fetch(
     `https://restcountries.com/v2/alpha/${code}`,
   )
@@ -109,14 +115,14 @@ watch(
   (newCode, oldCode) => {
     if (newCode !== oldCode) {
       loading.value = true;
-      fetchData(newCode).then(() => {
+      fetchData(newCode as string).then(() => {
         loading.value = false;
       });
     }
   },
 );
 
-async function fetchWithCode({ code, params }) {
+async function fetchWithCode({ code, params} : {code: string, params: any} ) {
   loading.value = false;
   const baseUrl = "https://restcountries.com/v2";
   const queryString = new URLSearchParams(params).toString();
@@ -129,7 +135,7 @@ async function fetchWithCode({ code, params }) {
   return name;
 }
 
-async function fetchCountryNamesWithCode(countryCodes) {
+async function fetchCountryNamesWithCode(countryCodes: string[]) {
   const countryNames = await Promise.all(
     countryCodes.map(
       async (code: string) =>
@@ -148,7 +154,7 @@ async function fetchCountryNamesWithCode(countryCodes) {
 }
 
 onBeforeMount(() => {
-  fetchData(route.params.code);
+  fetchData(route.params.code as string);
 });
 
 const infoFieldsLeft = computed(() => ({
