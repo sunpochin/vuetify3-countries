@@ -60,16 +60,26 @@ let loading = ref(false);
 const route = useRoute();
 
 async function fetchData(code) {
-  fetch(`https://restcountries.com/v2/alpha/${code}`)
+  const countryDetail = await fetch(
+    `https://restcountries.com/v2/alpha/${code}`,
+  )
     .then((res) => res.json())
     .then((data) => {
       countryData.value = data;
       console.log("borders: ", countryData.value.borders);
-      fetchCountryNamesWithCode(countryData.value.borders).then((res) => {
-        Borders.value = res;
-        console.log("fetched borders: ", Borders.value);
-      });
+      return data;
     });
+  console.log("countryDetail: ", countryDetail);
+
+  const names = await fetchCountryNamesWithCode(countryDetail.borders).then(
+    (res) => {
+      // Borders.value = res;
+      console.log("fetched borders: ", Borders.value);
+      return res;
+    },
+  );
+  console.log("names: ", names);
+  Borders.value = names;
 }
 
 watch(
