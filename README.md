@@ -7,6 +7,7 @@
 - Pinia
 - Vue Router
 - Vuetify
+- TypeScript
 
 ## Demo
 
