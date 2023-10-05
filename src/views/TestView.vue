@@ -1,8 +1,15 @@
 <template>
   <div>
     <ul class="details">
-      <li v-for="(entry, position) in entries" :key="position" class="group">
-        <div v-for="(value, label) in entry" :key="label">
+      <li
+        v-for="(entry, position) in entries"
+        :key="position"
+        class="group"
+      >
+        <div
+          v-for="(value, label) in entry"
+          :key="label"
+        >
           <b>{{ label }}</b>
           {{ value }}
         </div>

@@ -8,6 +8,7 @@
 - Vue Router
 - Vuetify
 - SASS
+- TypeScript
 
 ## Demo
 
