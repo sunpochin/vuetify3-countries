@@ -73,8 +73,11 @@ watch(
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/variables.scss";
+
 .all-view {
-  background-color: #f0f0f0;
+  background-color: $bg-color;
+  color: $text-color;
   padding: 1rem;
 }
 
@@ -106,4 +109,3 @@ watch(
   width: 300px;
 }
 </style>
-@/store/counter.js

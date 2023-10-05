@@ -98,10 +98,10 @@ async function fetchWithCode({ code, params }) {
   loading.value = false;
   const baseUrl = "https://restcountries.com/v2";
   const queryString = new URLSearchParams(params).toString();
-  console.log(
-    "`${baseUrl}${code}?${queryString}`: ",
-    `${baseUrl}${code}?${queryString}`,
-  );
+  // console.log(
+  //   "`${baseUrl}${code}?${queryString}`: ",
+  //   `${baseUrl}${code}?${queryString}`,
+  // );
   const res = await fetch(`${baseUrl}${code}?${queryString}`);
   const name = await res.json();
   return name;
@@ -141,12 +141,15 @@ const infoFieldsRight = computed(() => ({
 }));
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/assets/variables.scss";
+
 .detail-wrapper {
+  background-color: $bg-color;
+  color: $text-color;
+
   min-height: 100vh; /* 设置最小高度为视口高度 */
   max-width: 100%;
-
-  background-color: #f0f0f0;
   padding: 0 3rem;
 
   @media (max-width: 600px) {
@@ -154,15 +157,15 @@ const infoFieldsRight = computed(() => ({
     justify-content: space-around;
     align-content: center;
   }
-}
 
-.details {
-  max-width: 100%;
-  display: flex;
-  gap: 4rem;
-  justify-content: space-between;
-  @media (max-width: 600px) {
-    flex-direction: column;
+  .details {
+    max-width: 100%;
+    display: flex;
+    gap: 4rem;
+    justify-content: space-between;
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
   }
 }
 
@@ -185,7 +188,6 @@ const infoFieldsRight = computed(() => ({
 .flex-col {
   flex: 1;
 }
-
 .group {
   flex: 1;
 }
