@@ -55,4 +55,3 @@ onMounted(() => {
   border-radius: 20px;
 }
 </style>
-@/store/counter.js
