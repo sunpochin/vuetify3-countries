@@ -7,7 +7,7 @@
         dense
         filled
         clearable
-        placeholder="Search"
+        placeholder="搜尋國家名稱"
         prepend-inner-icon="mdi-magnify"
         class="searchText"
         @focus="searchBoxClosed = false"
@@ -17,7 +17,7 @@
 
       <div class="custom-width">
         <v-select
-          label="Filter by Region"
+          label="依照區域分類"
           :items="['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']"
           variant="outlined"
           @update:modelValue="onSelectChange"
@@ -83,7 +83,7 @@ watch(
 
 // https://sunpochin.hashnode.dev/vuetify-v-select-width-css-div
 .custom-width {
-  width: 200px;
+  width: 300px;
 }
 
 .search-select {
@@ -96,16 +96,17 @@ watch(
     flex-direction: column;
     align-items: flex-start;
   }
+  .searchText {
+    width: 300px;
+    max-width: 300px;
+  }
 }
 
-.searchText {
-  max-width: 300px;
-}
-.v-input.expanding-search {
-  transition: max-width 0.5s;
-  max-width: 400px;
-}
-.v-input.closed {
-  width: 300px;
-}
+// .v-input.expanding-search {
+//   transition: max-width 0.5s;
+//   max-width: 500px;
+// }
+// .v-input.closed {
+//   width: 500px;
+// }
 </style>
