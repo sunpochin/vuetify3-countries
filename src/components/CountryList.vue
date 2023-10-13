@@ -54,4 +54,5 @@ onMounted(() => {
 .grid-item {
   border-radius: 20px;
 }
+
 </style>
