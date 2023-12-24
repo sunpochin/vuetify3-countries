@@ -1,7 +1,7 @@
 <template lang="">
   <div
     class="country-card"
-    @click="showCountry"
+    @click="handleRegister"
   >
     <img
       :src="parentMsg.flag"
@@ -28,7 +28,7 @@ const props = defineProps({
   },
 });
 
-function showCountry() {
+function handleRegister() {
   console.log("showCountry", props.parentMsg.alpha3Code);
   router.push({
     name: "CountryView",

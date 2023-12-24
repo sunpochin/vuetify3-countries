@@ -1,0 +1,127 @@
+{
+  "editor.fontSize": 18,
+  "editor.minimap.scale": 3,
+  "editor.glyphMargin": false,
+  "editor.mouseWheelZoom": true,
+  "vs-kubernetes": {
+    "vs-kubernetes.helm-path.linux": "/home/pachinko/.vs-kubernetes/tools/helm/linux-amd64/helm",
+    "vs-kubernetes.draft-path.linux": "/home/pachinko/.vs-kubernetes/tools/draft/linux-amd64/draft",
+    "vs-kubernetes.minikube-path.linux": "/home/pachinko/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
+    "vscode-kubernetes.helm-path.linux": "/home/pac/.vs-kubernetes/tools/helm/linux-amd64/helm",
+    "vscode-kubernetes.minikube-path.linux": "/home/pac/.vs-kubernetes/tools/minikube/linux-amd64/minikube"
+  },
+  "editor.autoClosingBrackets": "never",
+  "python.autoComplete.showAdvancedMembers": false,
+  "editor.suggest.showColors": false,
+  "workbench.colorCustomizations": {},
+  "editor.wordWrap": "on",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "emmet.preferences": {},
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.includeLanguages": {
+    "erb": "html",
+    "ruby": "html",
+    "javascript": "html"
+  },
+  "files.associations": {
+    "*.jsx": "javascriptreact",
+    "*.js": "javascriptreact",
+    "*.html": "html"
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.tabSize": 2,
+  "prettier.useTabs": true,
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "redhat.telemetry.enabled": true,
+  "tabnine.experimentalAutoImports": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "aws.profile": "profile:default",
+  "yaml.schemas": {},
+  "html.format.templating": true,
+  "[html]": {
+    "editor.suggest.insertMode": "replace"
+  },
+  "[django-html]": {
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
+  "html.format.indentInnerHtml": true,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true,
+    "ruby": true,
+    "Log": false,
+    "html": true
+  },
+  "C_Cpp.updateChannel": "Insiders",
+  "workbench.colorTheme": "Monokai Pro",
+  "workbench.editor.labelFormat": "short",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "sync.gist": "ab1f32be8e2e09c4cedcba096854a75e",
+  "editor.linkedEditing": true,
+  "debug.console.fontSize": 22,
+  "markdown.preview.fontSize": 22,
+  "terminal.integrated.fontSize": 22,
+  "security.workspace.trust.untrustedFiles": "open",
+  "reactSnippets.settings.prettierEnabled": true,
+  "prettier.enableDebugLogs": true,
+  "prettier.endOfLine": "auto",
+  "editor.formatOnPaste": true,
+  "window.zoomLevel": 3,
+  "vscode-edge-devtools.browserFlavor": "Default",
+  "debug.showBreakpointsInOverviewRuler": true,
+  "editor.minimap.enabled": false,
+  "workbench.startupEditor": "none",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnType": true
+  },
+  "cloudcode.yaml.format.enable": true,
+  "json.format.keepLines": true,
+  "vue.splitEditors.layout.left": ["script", "scriptSetup", "styles"],
+  "eslint.format.enable": true,
+  "eslint.codeActionsOnSave.rules": null,
+  "html.format.contentUnformatted": "",
+  "git.openRepositoryInParentFolders": "never",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.alwaysShowStatus": true,
+  "notebook.codeActionsOnSave": {},
+  "editor.formatOnSave": true,
+
+  "[typescript]": {
+    // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vetur.format.defaultFormatter.html": "js-beautify-html"
+  // "[vue]": {
+  //   "editor.defaultFormatter": "octref.vetur"
+  // }
+  // "[vue]": {
+  // 	"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  // }
+}

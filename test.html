@@ -1,0 +1,96 @@
+<body>
+  <div id="app">
+    <div v-for="movie in movies" :key="movie.id">{{ movie.title }}</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    var length = 10;
+    function fn() {
+      console.log(this.length);
+    }
+    var obj = {
+      length: 5,
+      method: function (fn) {
+        fn();
+        arguments[0]();
+      },
+    };
+    obj.method(fn, 1, 2, 4);
+
+    new Vue({
+      el: "#app",
+      data: {
+        movies: [],
+      },
+
+      mounted() {
+        fetch("https://ghibliapi.vercel.app/films")
+          .then((response) => response.json())
+          .then((data) => {
+            this.movies = data;
+          });
+
+        // function sum(x) {
+        //   if (arguments.length == 2) {
+        //     return arguments[0] + arguments[1];
+        //   } else {
+        //     return (y) => x + y;
+        //   }
+        // }
+
+        // function sum(x, y) {
+        //   if (y !== undefined) {
+        //     return x + y;
+        //   } else {
+        //     return (y) => x + y;
+        //   }
+        // }
+        // console.log(sum(2, 3)); // Outputs 5
+        // console.log(sum(2)(3)); // Outputs 5
+        // 題目6
+
+        // for (var i = 0; i < 5; i++) {
+        //   var btn = document.createElement("button");
+        //   btn.appendChild(document.createTextNode("Button " + i));
+        //   btn.addEventListener(
+        //     "click",
+        //     (function (j) {
+        //       return function () {
+        //         console.log(j);
+        //       };
+        //     })(i)
+        //   );
+        //   document.body.appendChild(btn);
+        // }
+        // var arr1 = "john".split("");
+        // var arr2 = arr1.reverse();
+        // var arr3 = "jones".split("");
+        // arr2.push(arr3);
+        // console.log("array 1: length=" + arr1.length + " last=" + arr1);
+        // console.log("array 2: length=" + arr2.length + " last=" + arr2);
+
+        // var a = {},
+        //   b = { key: "b" },
+        //   c = { key: "c" };
+
+        // a[b] = 123;
+        // // a[c] = 456;
+        // console.log(a);
+
+        // console.log(a[b]);
+        // var hero = {
+        //   _name: "John Doe",
+        //   getSecretIdentity: function () {
+        //     return this._name;
+        //   },
+        // };
+
+        // var stoleSecretIdentity = hero.getSecretIdentity.bind(hero);
+
+        // console.log(stoleSecretIdentity());
+        // console.log(hero.getSecretIdentity());
+      },
+    });
+  </script>
+</body>
