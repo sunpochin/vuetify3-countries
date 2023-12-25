@@ -5,18 +5,41 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script>
-    var length = 10;
-    function fn() {
-      console.log(this.length);
-    }
-    var obj = {
-      length: 5,
-      method: function (fn) {
-        fn();
-        arguments[0]();
-      },
+    var expect = function (val) {
+      return {
+        toBe: (val2) => {
+          if (val != val2) {
+            throw new Error("Not Equal");
+          } else {
+            return true;
+          }
+        },
+        notToBe: (val2) => {
+          if (val == val2) {
+            throw new Error("Equal");
+          } else {
+            return true;
+          }
+        },
+      };
     };
-    obj.method(fn, 1, 2, 4);
+
+    console.log(expect(5).toBe(5));
+    console.log(expect(5).notToBe(6)); // throws "Not Equal"
+    // throws "Equal"
+
+    // var length = 10;
+    // function fn() {
+    //   console.log(this.length);
+    // }
+    // var obj = {
+    //   length: 5,
+    //   method: function (fn) {
+    //     fn();
+    //     arguments[0]();
+    //   },
+    // };
+    // obj.method(fn, 1, 2, 4);
 
     new Vue({
       el: "#app",
